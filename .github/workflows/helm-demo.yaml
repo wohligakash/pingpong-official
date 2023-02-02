@@ -10,33 +10,6 @@ env:
     JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
 jobs:
-    # codacy-analysis-cli:
-    #     name: Codacy Analysis CLI
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #       - name: Checkout code
-    #         uses: actions/checkout@main
-
-    #       - name: Run Codacy Analysis CLI
-    #         uses: codacy/codacy-analysis-cli-action@master
-    #         with:
-    #           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-
-          # - name: Save Codacy report
-          #   uses: actions/upload-artifact@v2
-          #   with:
-          #     name: codacy-report
-          #     path: codacy-report.json
-              
-          # - name: stop if fail
-          #   run: |
-          #     result=$(cat codacy-report.json | jq '.summary.totalIssues')
-          #     if [ "$result" -ne "0" ]; then
-          #       echo "There are code issues detected by Codacy. Failing the build."
-          #       exit 1
-          #     else
-          #       echo "Codacy analysis completed successfully. No issues detected."
-          #     f
 
     helm-actions-testing:
         runs-on: ubuntu-latest
@@ -83,10 +56,9 @@ jobs:
                   git commit -m "Updating newer image"
                   git push origin main
 
-    moving-jira-issue:
+    moving-jira-ticket:
         runs-on: ubuntu-latest
         needs: helm-actions-testing
-        name: Jira Example
         steps:
           
             - name: Jira Login
@@ -101,16 +73,6 @@ jobs:
               uses: atlassian/gajira-find-issue-key@v3
               with:
                 from: commits
-
-            # - name: Move jira issues
-            #   uses: pineapple-lab/jira-issue-transitions@v2.5
-            #   with:
-            #     jira-api-token: ${{ env.JIRA_API_TOKEN }}
-            #     jira-email: akash.pawar@wohlig.com
-            #     jira-base-url: https://playexch.atlassian.net/
-            #     issues: 'DO-1240'
-            #     to: 'In Progress'
-            #     from: 'Done'
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
