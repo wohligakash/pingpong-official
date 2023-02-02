@@ -96,11 +96,11 @@ jobs:
         name: Jira Example
         steps:
           
-            - uses: atlassian/gajira-login@master
-              env:
-                JIRA_BASE_URL: https://playexch.atlassian.net/
-                JIRA_USER_EMAIL: akash.pawar@wohlig.com
-                JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
+            # - uses: atlassian/gajira-login@master
+            #   env:
+            #     JIRA_BASE_URL: https://playexch.atlassian.net/
+            #     JIRA_USER_EMAIL: akash.pawar@wohlig.com
+            #     JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
         # - uses: tuanddd/jira-automate-transition@v1.0.5
         #   with:
         #     github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -108,3 +108,13 @@ jobs:
         #     column-to-move-to-when-changes-requested: Done
         #     column-to-move-to-when-merged: Done              # above
         #     jira-issue-id: D-1240
+
+            - name: Move jira issues
+              uses: pineapple-lab/jira-issue-transitions@v2.5
+              with:
+                jira-api-token: ${{ env.JIRA_API_TOKEN }}
+                jira-email: akash.pawar@wohlig.com
+                jira-base-url: https://playexch.atlassian.net/
+                issues: 'DO-1240'
+                to: 'Done'
+                from: 'In Progress'
