@@ -18,7 +18,7 @@ var result = calculateSum(2, 3);
 console.log(result);
    
 app.get('/', (req,res) => {
-    res.send("Proper Prior Planning")
+    res.send(":)  :)  :)  :)  :)  :)")
 })
 
 app.get('/ping', (req,res) => {
