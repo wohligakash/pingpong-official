@@ -109,6 +109,11 @@ jobs:
         #     column-to-move-to-when-merged: Done              # above
         #     jira-issue-id: D-1240
 
+            - name: Find in commit messages
+              uses: atlassian/gajira-find-issue-key@v3
+              with:
+                from: commits
+
             - name: Move jira issues
               uses: pineapple-lab/jira-issue-transitions@v2.5
               with:
@@ -116,10 +121,5 @@ jobs:
                 jira-email: akash.pawar@wohlig.com
                 jira-base-url: https://playexch.atlassian.net/
                 issues: 'DO-1240'
-                to: 'Done'
-                from: 'In Progress'
-
-            - name: Find in commit messages
-              uses: atlassian/gajira-find-issue-key@v3
-              with:
-                from: commits
+                to: 'In Progress'
+                from: 'Done'
