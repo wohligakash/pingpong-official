@@ -3,7 +3,7 @@ name: helm-actions-testing
 on:
     push:
         branches:
-            - main
+            - uat
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
@@ -78,4 +78,4 @@ jobs:
               uses: atlassian/gajira-transition@v3
               with:
                 issue: ${{ steps.find.outputs.issue }}
-                transition: "Done"
+                transition: "In Progress"
