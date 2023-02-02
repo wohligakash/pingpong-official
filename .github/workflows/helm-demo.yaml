@@ -104,6 +104,7 @@ jobs:
                 JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
 
             - name: Find in commit messages
+              id: find
               uses: atlassian/gajira-find-issue-key@v3
               with:
                 from: commits
