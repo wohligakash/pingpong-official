@@ -10,8 +10,8 @@ on:
             - main
 
 env:
-    GITHUB_TOKEN: ${{ secrets.auth_token }}
-    JIRA_API_TOKEN: ATATT3xFfGF0gHTWM7lhkiEELN_sjoTf1grsm8KuGuzUCVwNf5jjP5pamPwH0my1BXqfB5L8R0gF59QMnf0YP886U8aO_5t3_dHdl2cjnwyPQLZo6OEIWmIsw15ZbsjRlXE3
+    GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
+    JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
 jobs:
     # codacy-analysis-cli:
