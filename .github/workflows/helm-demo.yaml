@@ -118,3 +118,8 @@ jobs:
                 issues: 'DO-1240'
                 to: 'Done'
                 from: 'In Progress'
+
+            - name: Find in commit messages
+              uses: atlassian/gajira-find-issue-key@v3
+              with:
+                from: commits
