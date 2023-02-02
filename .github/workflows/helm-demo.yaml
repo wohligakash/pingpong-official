@@ -75,7 +75,8 @@ jobs:
 
             - name: Helm template and git--push
               run: |
-                  git clone https://github.com/wohligakash/pingpong-official-gitops.git                 
+                  git clone https://github.com/wohligakash/pingpong-official-gitops.git
+                  cd pingpong-official-gitops
                   
                   yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i helm-chart/values.yaml
                   helm template uat-env ./helm-chart > manifest-file/manifests.yaml
