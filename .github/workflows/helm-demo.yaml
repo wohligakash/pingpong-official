@@ -97,7 +97,7 @@ jobs:
         steps:
         - uses: atlassian/gajira-login@master
           env:
-            JIRA_BASE_URL: https://playexch.atlassian.net/rest/api/3/issue/DO-1240
+            JIRA_BASE_URL: https://playexch.atlassian.net/
             JIRA_USER_EMAIL: akash.pawar@wohlig.com
             JIRA_API_TOKEN: ${JIRA_API_TOKEN}
         # - uses: tuanddd/jira-automate-transition@v1.0.5
