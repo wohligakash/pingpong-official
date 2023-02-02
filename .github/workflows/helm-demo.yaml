@@ -3,7 +3,7 @@ name: helm-actions-testing
 on:
     push:
         branches:
-            - main
+            - dev
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
@@ -68,14 +68,13 @@ jobs:
                 JIRA_USER_EMAIL: akash.pawar@wohlig.com
                 JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
 
-            - name: Find in commit messages
-              id: find
+            - name: Find Ticket in Jira
               uses: atlassian/gajira-find-issue-key@v3
               with:
-                from: commits
+                string: ${{ github.event.ref }}
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
               with:
                 issue: ${{ steps.find.outputs.issue }}
-                transition: "Done"
+                transition: "In Progress"
