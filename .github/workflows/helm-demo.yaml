@@ -96,11 +96,12 @@ jobs:
         name: Jira Example
         steps:
           
-            # - uses: atlassian/gajira-login@master
-            #   env:
-            #     JIRA_BASE_URL: https://playexch.atlassian.net/
-            #     JIRA_USER_EMAIL: akash.pawar@wohlig.com
-            #     JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
+            - name: Jira Login
+              uses: atlassian/gajira-login@master
+              env:
+                JIRA_BASE_URL: https://playexch.atlassian.net/
+                JIRA_USER_EMAIL: akash.pawar@wohlig.com
+                JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
         # - uses: tuanddd/jira-automate-transition@v1.0.5
         #   with:
         #     github-token: ${{ secrets.GITHUB_TOKEN }}
