@@ -26,5 +26,5 @@ app.get('/ping', (req,res) => {
 })
 
 app.listen(8070,() => {
-    console.log("LOG LOG LOG")
+    console.log("IMPOSSIBLE - I M POSSIBLE")
 })
