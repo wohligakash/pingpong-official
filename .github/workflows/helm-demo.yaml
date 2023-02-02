@@ -25,10 +25,7 @@ jobs:
     #         uses: codacy/codacy-analysis-cli-action@master
     #         with:
     #           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          # or
-          # api-token: ${{ secrets.CODACY_API_TOKEN }}
-              # output: codacy-report.json
-          
+
           # - name: Save Codacy report
           #   uses: actions/upload-artifact@v2
           #   with:
