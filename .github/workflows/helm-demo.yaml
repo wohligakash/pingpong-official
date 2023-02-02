@@ -1,0 +1,108 @@
+name: helm-actions-testing
+
+on:
+    push:
+        branches:
+            - main
+            
+    pull_request:
+        branches:
+            - main
+
+env:
+    GITHUB_TOKEN: ${{ secrets.auth_token }}
+    JIRA_API_TOKEN: ATATT3xFfGF0gHTWM7lhkiEELN_sjoTf1grsm8KuGuzUCVwNf5jjP5pamPwH0my1BXqfB5L8R0gF59QMnf0YP886U8aO_5t3_dHdl2cjnwyPQLZo6OEIWmIsw15ZbsjRlXE3
+
+jobs:
+    # codacy-analysis-cli:
+    #     name: Codacy Analysis CLI
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #       - name: Checkout code
+    #         uses: actions/checkout@main
+
+    #       - name: Run Codacy Analysis CLI
+    #         uses: codacy/codacy-analysis-cli-action@master
+    #         with:
+    #           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+              # output: codacy-report.json
+          
+          # - name: Save Codacy report
+          #   uses: actions/upload-artifact@v2
+          #   with:
+          #     name: codacy-report
+          #     path: codacy-report.json
+              
+          # - name: stop if fail
+          #   run: |
+          #     result=$(cat codacy-report.json | jq '.summary.totalIssues')
+          #     if [ "$result" -ne "0" ]; then
+          #       echo "There are code issues detected by Codacy. Failing the build."
+          #       exit 1
+          #     else
+          #       echo "Codacy analysis completed successfully. No issues detected."
+          #     f
+
+    helm-actions-testing:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@main
+
+            - name: login to docker hub
+              uses: docker/login-action@v2
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}  
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Set env
+              run: echo "GITHUB_BRANCH=$(echo $GITHUB_REF_NAME-$GITHUB_SHA)" >> $GITHUB_ENV
+
+            - name: Helm installation
+              run: |                  
+                  curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
+                  tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
+                  mv linux-amd64/helm /usr/local/bin/helm
+                  helm version
+
+            - name: Build the Docker image
+              run: |
+                  docker build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA . 
+                  docker push wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA
+
+            - name: Helm template and git--push
+              run: |
+                  git clone https://github.com/wohligakash/pingpong-gitops.git                 
+                  cd pingpong-gitops
+                  
+                  yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i helm-chart/values.yaml
+                  helm template uat-env ./helm-chart > manifest-file/manifests.yaml
+                  cat manifest-file/manifests.yaml    
+
+                  git config user.name "$GITHUB_ACTOR"
+                  git config user.email "akash.pawar@wohlig.com"
+
+                  git add .
+                  git commit -m "Updating newer image"
+                  git push origin main
+
+    moving-jira-issue:
+        runs-on: ubuntu-latest
+        needs: helm-actions-testing
+        name: Jira Example
+        steps:
+        - uses: atlassian/gajira-login@master
+          env:
+            JIRA_BASE_URL: https://playexch.atlassian.net/jira/your-work
+            JIRA_USER_EMAIL: akash.pawar@wohlig.com
+            JIRA_API_TOKEN: ${JIRA_API_TOKEN}
+        # - uses: tuanddd/jira-automate-transition@v1.0.5
+        #   with:
+        #     github-token: ${{ secrets.GITHUB_TOKEN }}
+        #     column-to-move-to-when-review-requested: Done
+        #     column-to-move-to-when-changes-requested: Done
+        #     column-to-move-to-when-merged: Done              # above
+        #     jira-issue-id: D-1240
