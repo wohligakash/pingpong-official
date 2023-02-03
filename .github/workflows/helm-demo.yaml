@@ -71,7 +71,7 @@ jobs:
             - name: Find Ticket in Jira
               uses: atlassian/gajira-find-issue-key@v3
               with:
-                string: ${{ github.event.ref }}
+                string: ${{ github.ref }}
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
