@@ -57,7 +57,7 @@ jobs:
                   git push origin main
 
     moving-jira-ticket:
-        if: ${{ github.event.ref }} != "uat"
+        if: env.GITHUB_BRANCH != uat
         runs-on: ubuntu-latest
         needs: helm-actions-testing
         steps:
@@ -73,7 +73,7 @@ jobs:
               id: issue-key
               uses: atlassian/gajira-find-issue-key@v3
               with:
-                string: ${{ github.event.ref }}
+                from: branch
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
