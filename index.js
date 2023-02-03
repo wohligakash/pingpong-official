@@ -14,7 +14,7 @@ const sum = a + b + c;
     return sum;
 }
 
-var result = calculateSum(2, 3, 4);
+var result = calculateSum(2, 3, 5);
 console.log(result);
    
 app.post('/', (req, res) => {
