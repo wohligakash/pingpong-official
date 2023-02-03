@@ -3,7 +3,7 @@ name: helm-actions-testing
 on:
     push:
         branches:
-            - dev
+            - uat
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
