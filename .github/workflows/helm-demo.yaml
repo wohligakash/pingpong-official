@@ -72,7 +72,7 @@ jobs:
               id: issue-key
               uses: atlassian/gajira-find-issue-key@v3
               with:
-                from: branch
+                string: ${{ github.event.ref }}
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
