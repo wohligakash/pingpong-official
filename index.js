@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 function calculateSum(a, b,c) {
-var sum = a + b + c;
+const sum = a + b + c;
     return sum;
 }
 
