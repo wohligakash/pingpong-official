@@ -69,13 +69,13 @@ jobs:
                 JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
 
             - name: Find in commit messages
-              id: find
+              id: issue-key
               uses: atlassian/gajira-find-issue-key@v3
               with:
-                from: commits
+                string: ${{ github.event.ref }}
 
             - name: Transition issue
               uses: atlassian/gajira-transition@v3
               with:
-                issue: ${{ steps.find.outputs.issue }}
+                issue: ${{ steps.issue-key.outputs.issue }}
                 transition: "In Progress"
