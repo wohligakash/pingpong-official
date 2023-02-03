@@ -15,9 +15,14 @@ const sum = a + b + c;
 }
 
 var result = calculateSum(2, 3, 4);
-
 console.log(result);
    
+app.post('/', (req, res) => {
+    // vulnerable code: not sanitizing user input
+    const userInput = req.body.userInput;
+    res.send(`You entered: ${userInput}`);
+});
+  
 app.get('/', (req,res) => {
     res.send("Proper Prior Planning Prevents Poor Performance")
 })
