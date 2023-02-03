@@ -9,12 +9,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-function calculateSum(a, b) {
-var sum = a + b;
+function calculateSum(a, b,c) {
+var sum = a + b + c;
     return sum;
 }
 
-var result = calculateSum(2, 3);
+var result = calculateSum(2, 3,6);
 console.log(result);
    
 app.get('/', (req,res) => {
