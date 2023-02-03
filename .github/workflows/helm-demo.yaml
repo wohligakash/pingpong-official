@@ -67,7 +67,7 @@ jobs:
                 JIRA_BASE_URL: https://playexch.atlassian.net/
                 JIRA_USER_EMAIL: akash.pawar@wohlig.com
                 JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
-
+                
             - name: Find in commit messages
               id: issue-key
               uses: atlassian/gajira-find-issue-key@v3
