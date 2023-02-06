@@ -14,8 +14,7 @@ const sum = a + b + c;
     return sum;
 }
 
-var result = calculateSum(2, 3, 6);
-
+var result = calculateSum(2, 3);
 console.log(result);
    
 app.get('/', (req,res) => {
