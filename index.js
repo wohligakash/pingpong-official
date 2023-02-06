@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-calculateSum = (a, b,c) => {
+let calculateSum = (a, b,c) => {
 const sum = a + b + c;
     return sum;
 }
