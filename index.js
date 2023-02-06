@@ -7,12 +7,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-let calculateSum = (a, b,c) => {
+let calculateSum = (a, b, c) => {
 const sum = a + b + c;
     return sum;
 }
 
-const result = calculateSum(2, 3,5);
+const result = calculateSum(2, 3, 5);
 console.log(result);
    
 app.get('/', (req,res) => {
