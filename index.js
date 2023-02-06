@@ -9,20 +9,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-function calculateSum(a, b, c) {
-const sum = a + b + c;
+function calculateSum(a, b,c) {
+var sum = a + b + c;
     return sum;
 }
 
-var result = calculateSum(2, 3, 5);
+var result = calculateSum(2, 3, );
 console.log(result);
    
-app.post('/', (req, res) => {
-    // vulnerable code: not sanitizing user input
-    const userInput = req.body.userInput;
-    res.send(`You entered: ${userInput}`);
-});
-  
 app.get('/', (req,res) => {
     res.send("Proper Prior Planning Prevents Poor Performance")
 })
