@@ -1,16 +1,13 @@
-import { json, urlencoded } from "body-parser";
-import express from "express";
+const bodyParser = require("body-parser");
+const express = require("express");
 const app = express();
 
-app.use(json());
-app.use(urlencoded({
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-function calculateSum(a, b, c) {
-    const sum = a + b + c;
-    return sum;
-}
+let calculateSum = (a, b, c) => a + b + c;
 
 const result = calculateSum(2, 3, 5);
 console.log(result);
