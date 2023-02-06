@@ -1,20 +1,18 @@
-const bodyParser = require('body-parser');
-// const { response } = require('express');
-// const { response } = require('express');
-const express = require('express');
+const bodyParser = require("body-parser");
+const express = require("express");
 const app = express();
-// app.use(bodyParser)
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-function calculateSum(a, b,c) {
+let calculateSum = (a, b, c) => {
 const sum = a + b + c;
     return sum;
 }
 
-var result = calculateSum(2, 3);
+const result = calculateSum(2, 3, 5);
 console.log(result);
    
 app.get('/', (req,res) => {
