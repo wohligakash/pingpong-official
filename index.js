@@ -21,5 +21,5 @@ app.get('/ping', (req, res) => {
 })
 
 app.listen(8070, () => {
-    console.log("Hello world")
+    console.log("Hello all")
 })
