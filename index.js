@@ -7,16 +7,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-let calculateSum = (a, b, c) => {
-const sum = a + b + c;
-    return sum;
-}
+let calculateSum = (a, b, c) => a + b + c;
 
 const result = calculateSum(2, 3, 5);
 console.log(result);
    
 app.get('/', (req,res) => {
-    res.send("Proper Prior Planning Prevents Poor Performance")
+    res.send( "Proper Prior Planning Prevents Poor Performance" )
 })
 
 app.get('/ping', (req,res) => {
