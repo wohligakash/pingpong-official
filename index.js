@@ -12,7 +12,7 @@ const sum = a + b + c;
     return sum;
 }
 
-const result = calculateSum(2, 3);
+const result = calculateSum(2, 3,5);
 console.log(result);
    
 app.get('/', (req,res) => {
