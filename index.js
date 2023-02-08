@@ -20,7 +20,5 @@ app.get('/ping', (req, res) => {
     res.json({ Response: "Pong" })
 });
 
-app.listen(8070, () => {
-    console.log("Hello all")
-});
+app.listen(8070, () => {console.log("Server is running on localhost:8070")});
 
