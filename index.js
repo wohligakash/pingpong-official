@@ -22,5 +22,5 @@ app.get('/ping', (req, res) => {
 
 app.listen(8070, () => {
     console.log("Server is running on localhost:8070");
-});
+})
 
