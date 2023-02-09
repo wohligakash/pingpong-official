@@ -13,7 +13,7 @@ const result = calculateSum(2, 3, 5);
 console.log(result);
 
 app.get("/", (req, res) => {
-    res.send("In case of fire - git commit > git push > RUNNNNNNN")
+    res.send("In case of fire - git commit > git push > RUNNNNN")
 });
 
 app.get("/ping", (req, res) => {
