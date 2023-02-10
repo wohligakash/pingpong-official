@@ -57,7 +57,7 @@ jobs:
 
     Jira-ticket-transition:
         runs-on: ubuntu-latest
-        needs: helm-actions-testing
+        needs: Build-Commit-Push
         steps:
 
             - name: Jira Login
