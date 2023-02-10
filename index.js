@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 
 let calculateSum = (a, b, c) => a + b + c;
 
-const result = calculateSum(2, 3, 5);
+const result = calculateSum(2, 3, 6);
 console.log(result);
 
 app.get("/", (req, res) => {
