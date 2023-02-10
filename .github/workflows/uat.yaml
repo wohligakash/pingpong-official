@@ -1,4 +1,4 @@
-name: helm-actions-testing
+name: Build-Commit-Push-Jira-Transition
 
 on:
     push:
@@ -7,11 +7,10 @@ on:
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
-    JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
 jobs:
 
-    helm-actions-testing:
+    Build-Commit-Push:
         runs-on: ubuntu-latest
 
         steps:
@@ -56,7 +55,7 @@ jobs:
                   git commit -m "Updating newer image"
                   git push origin main
 
-    moving-jira-ticket:
+    Jira-ticket-transition:
         runs-on: ubuntu-latest
         needs: helm-actions-testing
         steps:
@@ -64,9 +63,9 @@ jobs:
             - name: Jira Login
               uses: atlassian/gajira-login@master
               env:
-                JIRA_BASE_URL: https://playexch.atlassian.net/
-                JIRA_USER_EMAIL: akash.pawar@wohlig.com
-                JIRA_API_TOKEN: ${{ env.JIRA_API_TOKEN }}
+                JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+                JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+                JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
                 
             - name: Find
               id: issue-key

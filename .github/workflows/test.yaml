@@ -3,7 +3,7 @@ name: Build-Commit-Push-Jira-Transition
 on:
     push:
         branches:
-            - prod
+            - test
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
