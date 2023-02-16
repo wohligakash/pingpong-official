@@ -47,7 +47,6 @@ jobs:
                   helm template uat-env ./helm-chart > manifest-file/manifests.yaml
                   cat manifest-file/manifests.yaml    
 
-                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/wohligakash/pingpong-official-gitops.git
                   git config user.name "$GITHUB_ACTOR"
                   git config user.email "akash.pawar@wohlig.com"
 
