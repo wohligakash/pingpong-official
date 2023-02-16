@@ -5,9 +5,6 @@ on:
         branches:
             - dev
 
-env:
-    GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
-
 jobs:
 
     Build-Commit-Push:
@@ -40,14 +37,14 @@ jobs:
 
             - name: Helm template and git--push
               run: |
-                  git clone https://github.com/wohligakash/pingpong-official-gitops.git
+
+                  git clone https://${{ secrets.AWS_GITHUB_USER }}:${{ secrets.AUTH_TOKEN }}@github.com/wohligakash/pingpong-official-gitops.git
                   cd pingpong-official-gitops
                   
                   yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i helm-chart/values.yaml
                   helm template uat-env ./helm-chart > manifest-file/manifests.yaml
                   cat manifest-file/manifests.yaml    
 
-                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/wohligakash/pingpong-official-gitops.git
                   git config user.name "$GITHUB_ACTOR"
                   git config user.email "akash.pawar@wohlig.com"
 
