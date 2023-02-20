@@ -54,7 +54,7 @@ jobs:
 
     Jira-ticket-transition:
         runs-on: ubuntu-latest
-        needs: Build-Commit-Push
+        needs: Build-Manifest-Push
         steps:
 
             - name: Jira Login
