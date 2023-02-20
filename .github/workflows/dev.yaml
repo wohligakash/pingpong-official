@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-    Build-Commit-Push:
+    Build-Manifest-Push:
         runs-on: ubuntu-latest
 
         steps:
@@ -24,7 +24,7 @@ jobs:
               run: echo "GITHUB_BRANCH=$(echo $GITHUB_REF_NAME-$GITHUB_SHA)" >> $GITHUB_ENV
 
             - name: Helm installation
-              run: |                  
+              run: |                    
                   curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
                   tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
                   mv linux-amd64/helm /usr/local/bin/helm
@@ -38,15 +38,15 @@ jobs:
             - name: Helm template and git--push
               run: |
 
-                  git clone https://${{ secrets.AWS_GITHUB_USER }}:${{ secrets.AUTH_TOKEN }}@github.com/wohligakash/pingpong-official-gitops.git
-                  cd pingpong-official-gitops
-                  
-                  yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i helm-chart/values.yaml
-                  helm template uat-env ./helm-chart > manifest-file/manifests.yaml
-                  cat manifest-file/manifests.yaml    
+                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
+                  CD Helm-GitOps
+
+                  yq e '.image = "${{ env.GITHUB_BRANCH }}"' -i fairplay-api-deployments-values.yaml
+                  helm template helm-testing . > manifest-file/manifests.yaml
+                  cat manifest-file/manifests.yaml
 
                   git config user.name "$GITHUB_ACTOR"
-                  git config user.email "akash.pawar@wohlig.com"
+                  git config user.email ${{ secrets.USER_EMAIL_GITHUB }}
 
                   git add .
                   git commit -m "Updating newer image"
