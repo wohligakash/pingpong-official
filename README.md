@@ -2,5 +2,5 @@
 
 # Pingpong-official
 with implementaion of 
-1) Helm manifestation
+1) Helm manifesting
 2) Jira ticket transition
