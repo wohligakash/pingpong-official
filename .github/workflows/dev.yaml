@@ -42,7 +42,7 @@ jobs:
                   cd Helm-GitOps-Test
 
                   yq e '.image = "${{ env.GITHUB_BRANCH }}"' -i fairplay-api-deployments-values.yaml
-                  helm template helm-testing . > manifest-file/manifests.yaml
+                  helm template helm-g ./Helm --values ./Helm/fairplay-api-deployments-values.yaml
                   cat manifest-file/manifests.yaml
 
                   git config user.name "$GITHUB_ACTOR"
