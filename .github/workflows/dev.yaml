@@ -39,11 +39,8 @@ jobs:
               run: |
 
                   git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
+                  git checkout master
                   ls
-                  cd Helm-GitOps-Test
-                  ls
-                  cd Helm-GitOps
-                  
 
                   yq e '.image = "${{ env.GITHUB_BRANCH }}"' -i fairplay-api-deployments-values.yaml
                   helm template helm-g ./Helm-GitOps --values ./Helm-GitOps/fairplay-api-deployments-values.yaml
