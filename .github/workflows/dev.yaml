@@ -50,7 +50,7 @@ jobs:
 
                   git add .
                   git commit -m "Updating newer image"
-                  git push origin main
+                  git push origin master
 
     Jira-ticket-transition:
         runs-on: ubuntu-latest
