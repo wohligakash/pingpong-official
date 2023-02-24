@@ -38,7 +38,7 @@ jobs:
             - name: Helm template and git--push
               run: |
 
-                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.auth_token }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
+                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
                   cd Helm-GitOps-Test
 
                   yq e 'fairplay-api.image = "faiplay-api:${{ env.GITHUB_BRANCH }}"' -i Helm-GitOps/fairplay-api-deployments-values.yaml
