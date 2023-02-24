@@ -40,9 +40,8 @@ jobs:
 
                   git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
                   cd Helm-GitOps-Test
-                  ls
 
-                  yq e '.image = "${{ env.GITHUB_BRANCH }}"' -i Helm-GitOps/fairplay-api-deployments-values.yaml
+                  yq e 'fairplay-api.image = "faiplay-api:${{ env.GITHUB_BRANCH }}"' -i Helm-GitOps/fairplay-api-deployments-values.yaml
                   helm template helm-g ./Helm-GitOps --values ./Helm-GitOps/fairplay-api-deployments-values.yaml > manifest-file/manifests.yaml
 
                   git config user.name "$GITHUB_ACTOR"
