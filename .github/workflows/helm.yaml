@@ -47,6 +47,8 @@ jobs:
               run: |
                   git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git                
                   cd Helm-GitOps-Test
+
+                  git Checkout helm-test
                   
                   yq e '.tag = "${{ env.GITHUB_BRANCH }}"' -i ./Helm-GitOps/deployments-values.yaml
                   helm template helm-test ./Helm-GitOps --output-dir ./manifest-file/    
@@ -56,7 +58,7 @@ jobs:
 
                   git add .
                   git commit -m "updating newer image"
-                  git push --set-upstream origin master
+                  git push --set-upstream origin helm-test
 
     # moving-jira-issue:
     #     runs-on: ubuntu-latest
