@@ -45,7 +45,7 @@ jobs:
 
             - name: Helm template and git--push
               run: |
-                  git clone https://github.com/Fair-Play-Club/Helm-GitOps-Test.git                 
+                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.TOKEN }}@github.com/Fair-Play-Club/Fairplay-Uat-ENV                
                   cd Helm-GitOps-Test
                   cd Helm-GitOps
                   
