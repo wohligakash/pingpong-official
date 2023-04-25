@@ -48,7 +48,7 @@ jobs:
                   git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git                
                   cd Helm-GitOps-Test
 
-                  git Checkout helm-test
+                  git checkout helm-test
                   
                   yq e '.tag = "${{ env.GITHUB_BRANCH }}"' -i ./Helm-GitOps/deployments-values.yaml
                   helm template helm-test ./Helm-GitOps --output-dir ./manifest-file/    
