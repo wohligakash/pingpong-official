@@ -1,8 +1,8 @@
-FROM node:14
+FROM node
 WORKDIR /
 COPY package.json /
 COPY package-lock.json /
 RUN npm install
 COPY . .
-EXPOSE 8070
+EXPOSE 7654
 CMD ["node","index.js"]
