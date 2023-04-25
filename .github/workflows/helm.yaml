@@ -50,8 +50,7 @@ jobs:
                   cd Helm-GitOps
                   
                   yq e '.tag = "${{ env.GITHUB_BRANCH }}"' -i deployments-values.yaml
-                  helm template helm-test ./Helm-GitOps > ./manifest-file/manifests.yaml
-                  cat manifest-file/manifests.yaml    
+                  helm template helm-test ./Helm-GitOps --output-dir ./manifest-file/    
 
                   git config user.name "wohligakash"
                   git config user.email "akash.pawar@wohlig.com"
