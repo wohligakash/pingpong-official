@@ -14,37 +14,7 @@ on:
     # JIRA_API_TOKEN: ATATT3xFfGF0gHTWM7lhkiEELN_sjoTf1grsm8KuGuzUCVwNf5jjP5pamPwH0my1BXqfB5L8R0gF59QMnf0YP886U8aO_5t3_dHdl2cjnwyPQLZo6OEIWmIsw15ZbsjRlXE3
 
 jobs:
-    # codacy-analysis-cli:
-    #     name: Codacy Analysis CLI
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #       - name: Checkout code
-    #         uses: actions/checkout@main
-
-    #       - name: Run Codacy Analysis CLI
-    #         uses: codacy/codacy-analysis-cli-action@master
-    #         with:
-    #           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          # or
-          # api-token: ${{ secrets.CODACY_API_TOKEN }}
-              # output: codacy-report.json
-          
-          # - name: Save Codacy report
-          #   uses: actions/upload-artifact@v2
-          #   with:
-          #     name: codacy-report
-          #     path: codacy-report.json
-              
-          # - name: stop if fail
-          #   run: |
-          #     result=$(cat codacy-report.json | jq '.summary.totalIssues')
-          #     if [ "$result" -ne "0" ]; then
-          #       echo "There are code issues detected by Codacy. Failing the build."
-          #       exit 1
-          #     else
-          #       echo "Codacy analysis completed successfully. No issues detected."
-          #     f
-
+  
     helm-actions-testing:
         runs-on: ubuntu-latest
 
