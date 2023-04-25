@@ -51,7 +51,7 @@ jobs:
                   git checkout helm-test
                   
                   yq e '.tag = "${{ env.GITHUB_BRANCH }}"' -i ./Helm-GitOps/deployments-values.yaml
-                  helm template helm-test ./Helm-GitOps --output-dir ./manifest-file/    
+                  helm template helm-test ./Helm-GitOps --output-dir ./manifest-file/
 
                   git config user.name "wohligakash"
                   git config user.email "akash.pawar@wohlig.com"
