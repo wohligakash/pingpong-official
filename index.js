@@ -16,5 +16,6 @@ app.get('/ping', (req,res) => {
 })
 
 app.listen(7654,() => {
-    console.log("Server is running on localhost:7654")
+    console.log("10 % Luck, 20% skill, 15% concentrated power of will, 5% pleasure, 50% pain")
+    console.log("100% reason to Remember the name!!!!")
 })
