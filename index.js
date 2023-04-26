@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({
    
 app.get('/', (req,res) => {
     res.send("Proper Prior Planning Prevents Poor Performance")
+    console.log("Hello, Just another wonderful day!!!")
 })
 
 app.get('/ping', (req,res) => {
