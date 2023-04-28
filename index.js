@@ -5,10 +5,10 @@ var apm = require('elastic-apm-node').start({
     serviceName: 'my-service-name',
   
     // Use if APM Server requires a secret token
-    secretToken: '',
+    secretToken: 'zo8lSS1o49C8qWzk6d',
   
     // Set the custom APM Server URL (default: http://localhost:8200)
-    serverUrl: 'http://localhost:8200',
+    serverUrl: 'https://b07533b64e92477db318f6d0f75ffabe.apm.ap-south-1.aws.elastic-cloud.com:443',
   
     // Set the service environment
     environment: 'my-environment'
@@ -38,3 +38,16 @@ app.listen(7654,() => {
     console.log("10 % Luck, 20% skill, 15% concentrated power of will, 5% pleasure, 50% pain")
     console.log("100% reason to Remember the name!!!!")
 })
+
+
+app.use(apm.middleware.express());
+
+// Capture transactions
+app.use((req, res, next) => {
+  const transaction = apm.startTransaction(req.path, req.method);
+  res.on('finish', () => {
+    transaction.result = res.statusCode;
+    transaction.end();
+  });
+  next();
+});
