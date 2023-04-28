@@ -9,11 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",
+    "elastic-apm-node": "^3.44.1",
     "express": "^4.17.0",
     "node": "^19.0.1",
     "yq": "^0.0.1"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Akashpawar11/pingpong1.git"
