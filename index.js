@@ -1,18 +1,19 @@
+// Add this to the VERY top of the first file loaded in your app
 var apm = require('elastic-apm-node').start({
 
     // Override the service name from package.json
     // Allowed characters: a-z, A-Z, 0-9, -, _, and space
-    serviceName: 'my-service-name',
-  
+    serviceName: '',
+    
     // Use if APM Server requires a secret token
-    secretToken: 'zo8lSS1o49C8qWzk6d',
-  
+    secretToken: '',
+    
     // Set the custom APM Server URL (default: http://localhost:8200)
-    serverUrl: 'https://b07533b64e92477db318f6d0f75ffabe.apm.ap-south-1.aws.elastic-cloud.com:443',
-  
+    serverUrl: 'http://localhost:8200',
+    
     // Set the service environment
-    environment: 'my-environment'
-});
+    environment: 'production'
+    })
 
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -42,7 +43,7 @@ app.listen(7654,() => {
 
 app.use(apm.middleware.express());
 
-// Capture transactions
+// Capture transactionsnpm ls elastic-apm-node
 app.use((req, res, next) => {
   const transaction = apm.startTransaction(req.path, req.method);
   res.on('finish', () => {
