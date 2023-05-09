@@ -16,6 +16,6 @@ spec:
         kubernetes.io/arch: "arm64"
       containers:
       - name: my-app
-        image: wohligakash/pingpong:sdfsdfdsf
+        image: wohligakash/pingpong:test1
         ports:
         - containerPort: 8080
