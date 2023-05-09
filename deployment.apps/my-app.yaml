@@ -18,4 +18,4 @@ spec:
       - name: my-app
         image: wohligakash/pingpong:test1
         ports:
-        - containerPort: 8080
+        - containerPort: 8070
