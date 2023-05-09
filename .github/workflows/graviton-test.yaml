@@ -35,7 +35,7 @@ jobs:
 
             - name: Build the Docker image
               run: |
-                  docker buildx build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA --platform linux/amd64,linux/arm64 --push .
+                  docker buildx build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA --platform linux/arm64 .
                   docker push wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA
 
             - name: Helm template and git--push
