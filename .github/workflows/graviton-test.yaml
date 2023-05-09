@@ -26,13 +26,6 @@ jobs:
             - name: Set env
               run: echo "GITHUB_BRANCH=$(echo $GITHUB_REF_NAME-$GITHUB_SHA)" >> $GITHUB_ENV
 
-            - name: Helm installation
-              run: |                  
-                  curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
-                  tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
-                  mv linux-amd64/helm /usr/local/bin/helm
-                  helm version
-
             - name: Build the Docker image
               run: |
                   docker buildx build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA --platform linux/arm64 .
