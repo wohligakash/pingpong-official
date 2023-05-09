@@ -14,6 +14,7 @@ console.log(result);
 
 app.get("/", (req, res) => {
     res.send("In case of fire - git commit > git push > RUNNNNNN")
+})
 
 app.get("/ping", (req, res) => {
     res.json({ Response: "Pong" })
@@ -21,5 +22,4 @@ app.get("/ping", (req, res) => {
 
 app.listen(8070, () => {
     console.log("Server is running on localhost:8070");
-})
-
+});
