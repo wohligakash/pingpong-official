@@ -1,16 +1,16 @@
-name: Build-Commit-Push-Jira-Transition
+name: graviton-test
 
 on:
     push:
         branches:
-            - uat
+            - graviton-test
 
 env:
     GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
 jobs:
 
-    Build-Commit-Push:
+    graviton-test:
         runs-on: ubuntu-latest
 
         steps:
@@ -35,24 +35,24 @@ jobs:
 
             - name: Build the Docker image
               run: |
-                  docker build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA . 
+                  docker buildx build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA --platform linux/amd64,linux/arm64 --push .
                   docker push wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA
 
             - name: Helm template and git--push
               run: |
-                  git clone https://github.com/wohligakash/pingpong-official-gitops.git
-                  cd pingpong-official-gitops
+                  git clone https://github.com/wohligakash/pingpong-official
+                  cd pingpong-official
+                  git checkout gitops
                   
-                  yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i helm-chart/values.yaml
-                  helm template uat-env ./helm-chart > manifest-file/manifests.yaml
-                  cat manifest-file/manifests.yaml    
+                  yq e '.image = "wohligakash/pingpong:${{ env.GITHUB_BRANCH }}"' -i deployment.apps/my-app.yaml
+  
 
-                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/wohligakash/pingpong-official-gitops.git
+                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/wohligakash/pingpong-official.git
                   git config user.name "$GITHUB_ACTOR"
                   git config user.email "akash.pawar@wohlig.com"
 
                   git add .
                   git commit -m "Updating newer image"
-                  git push origin main
+                  git push origin gitops
 
  
