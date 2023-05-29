@@ -77,9 +77,9 @@ jobs:
 
             - name: Publish Report
               uses: actions/upload-artifact@v3
-              with:
-                name: Reports
-                path: /
+              # with:
+              #   name: Reports
+              #   path: /
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
