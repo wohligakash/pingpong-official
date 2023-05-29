@@ -50,16 +50,6 @@ jobs:
             #       git add .
             #       git commit -m "Updating newer image"
             #       git push origin master
-            - name: create files
-              run: |
-                ls
-                touch Cricket_Bet_Flow_Matched-report.html
-                touch Cricket_Bet_Flow_Unmatched-report.html
-                touch RESTful_API_Basics-report.html
-                touch Soccer_Bet_Flow_Matched-report.html
-                touch Soccer_Bet_Flow_Unmatched-report.html
-                touch Tennis_Bet_Flow_Matched-report.html
-                touch Tennis_Bet_Flow_Unmatched-report.html
 
             - name: Postman CI
               run: |
