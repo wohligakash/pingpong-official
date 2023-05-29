@@ -85,7 +85,7 @@ jobs:
               with:
                 name: Postman-Reports
                 path: |
-                  ${{ github.workspace }}/Cricket_Bet_Flow_Matched-report.html
+                  ${{ github.workspace }}
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
