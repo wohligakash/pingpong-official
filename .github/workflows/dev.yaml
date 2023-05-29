@@ -80,7 +80,7 @@ jobs:
               with:
                 name: Postman-Reports
                 path: |
-                  ./reports
+                  ./reports/
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
