@@ -61,29 +61,28 @@ jobs:
                 npm install -g newman
                 npm install -g newman-reporter-htmlextra
 
-                newman run "Collections/Cricket_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Cricket_Bet_Flow_Matched-report.html || true
+                newman run "Collections/Cricket_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Cricket_Bet_Flow_Unmatched-report.html || true
 
-                newman run "Collections/Cricket_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Cricket_Bet_Flow_Unmatched-report.html || true
-
-                newman run "Collections/RESTful_API_Basics.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/RESTful_API_Basics-report.html || true
-
-                newman run "Collections/Soccer_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Soccer_Bet_Flow_Matched-report.html || true
-
-                newman run "Collections/Soccer_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Soccer_Bet_Flow_Unmatched-report.html || true
-
-                newman run "Collections/Tennis_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Tennis_Bet_Flow_Matched-report.html || true
-
-                newman run "Collections/Tennis_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Reports/Tennis_Bet_Flow_Unmatched-report.html || true
-
-            - name: Postman CI
+                newman run "Collections/RESTful_API_Basics.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export RESTful_API_Basics-report.html || true
+      
+                newman run "Collections/Soccer_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Soccer_Bet_Flow_Matched-report.html || true
+      
+                newman run "Collections/Soccer_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Soccer_Bet_Flow_Unmatched-report.html || true
+      
+                newman run "Collections/Tennis_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Tennis_Bet_Flow_Matched-report.html || true
+      
+                newman run "Collections/Tennis_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export Tennis_Bet_Flow_Unmatched-report.html || true
+      
+            - name: Create Reports Directory
               run: |
                 mkdir Reports
-            
+                mv ./*.html Reports/
+      
             - name: Publish Report
               uses: actions/upload-artifact@v3
               with:
                 name: Postman-Reports
-                path: Reports
+                path: ./Reports/
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
