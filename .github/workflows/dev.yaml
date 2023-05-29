@@ -54,7 +54,7 @@ jobs:
             - name: Postman CI
               run: |
 
-                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/https://github.com/PlayExchange/postman-automation.git
+                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/PlayExchange/postman-automation.git
 
                   cd postman-automation
 
