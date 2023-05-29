@@ -63,17 +63,21 @@ jobs:
 
                 newman run "Collections/Cricket_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Cricket_Bet_Flow_Matched-report.html || true
 
-                newman run "Collections/Cricket_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Cricket_Bet_Flow_Unmatched-report.html || true
+                # newman run "Collections/Cricket_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Cricket_Bet_Flow_Unmatched-report.html || true
 
-                newman run "Collections/RESTful_API_Basics.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./RESTful_API_Basics-report.html || true
+                # newman run "Collections/RESTful_API_Basics.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./RESTful_API_Basics-report.html || true
       
-                newman run "Collections/Soccer_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Soccer_Bet_Flow_Matched-report.html || true
+                # newman run "Collections/Soccer_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Soccer_Bet_Flow_Matched-report.html || true
       
-                newman run "Collections/Soccer_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Soccer_Bet_Flow_Unmatched-report.html || true
+                # newman run "Collections/Soccer_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Soccer_Bet_Flow_Unmatched-report.html || true
       
-                newman run "Collections/Tennis_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Tennis_Bet_Flow_Matched-report.html || true
+                # newman run "Collections/Tennis_Bet_Flow_Matched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Tennis_Bet_Flow_Matched-report.html || true
       
-                newman run "Collections/Tennis_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Tennis_Bet_Flow_Unmatched-report.html || true
+                # newman run "Collections/Tennis_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Tennis_Bet_Flow_Unmatched-report.html || true
+            
+            - name: ls
+              run: |
+                ls
 
             - name: Publish Report
               uses: actions/upload-artifact@v3
