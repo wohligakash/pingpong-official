@@ -11,8 +11,8 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@main
+            # - name: Checkout code
+            #   uses: actions/checkout@main
 
             # - name: login to docker hub
             #   uses: docker/login-action@v2
@@ -78,8 +78,15 @@ jobs:
             - name: Publish Report
               uses: actions/upload-artifact@v3
               with:
-                name: Reports
-                path: ./
+                name: Postman-Reports
+                path: |
+                  ./Cricket_Bet_Flow_Matched-report.html
+                  ./Cricket_Bet_Flow_Unmatched-report.html
+                  ./RESTful_API_Basics-report.html
+                  ./Soccer_Bet_Flow_Matched-report.html
+                  ./Soccer_Bet_Flow_Unmatched-report.html
+                  ./Tennis_Bet_Flow_Matched-report.html
+                  ./Tennis_Bet_Flow_Unmatched-report.html
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
