@@ -50,10 +50,6 @@ jobs:
             #       git add .
             #       git commit -m "Updating newer image"
             #       git push origin master
-            - name: ls
-              run: |
-                ls
-                touch Cricket_Bet_Flow_Matched-report.html
 
             - name: Postman CI
               run: |
@@ -84,8 +80,7 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                 name: Postman-Reports
-                path: |
-                  ${{ github.workspace }}
+                path: ./
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
