@@ -88,14 +88,7 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                 name: Postman-Reports
-                path: |
-                  ./Cricket_Bet_Flow_Matched-report.html
-                  ./Cricket_Bet_Flow_Unmatched-report.html
-                  ./RESTful_API_Basics-report.html
-                  ./Soccer_Bet_Flow_Matched-report.html
-                  ./Soccer_Bet_Flow_Unmatched-report.html
-                  ./Tennis_Bet_Flow_Matched-report.html
-                  ./Tennis_Bet_Flow_Unmatched-report.html
+                path: ./
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
