@@ -14,42 +14,42 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@main
 
-            - name: login to docker hub
-              uses: docker/login-action@v2
-              with:
-                username: ${{ secrets.DOCKERHUB_USERNAME }}  
-                password: ${{ secrets.DOCKERHUB_TOKEN }}
+            # - name: login to docker hub
+            #   uses: docker/login-action@v2
+            #   with:
+            #     username: ${{ secrets.DOCKERHUB_USERNAME }}  
+            #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Set env
-              run: echo "GITHUB_BRANCH=$(echo $GITHUB_REF_NAME-$GITHUB_SHA)" >> $GITHUB_ENV
+            # - name: Set env
+            #   run: echo "GITHUB_BRANCH=$(echo $GITHUB_REF_NAME-$GITHUB_SHA)" >> $GITHUB_ENV
 
-            - name: Helm installation
-              run: |                    
-                  curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
-                  tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
-                  mv linux-amd64/helm /usr/local/bin/helm
-                  helm version
+            # - name: Helm installation
+            #   run: |                    
+            #       curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
+            #       tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
+            #       mv linux-amd64/helm /usr/local/bin/helm
+            #       helm version
 
-            - name: Build the Docker image
-              run: |
-                  docker build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA . 
-                  docker push wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA
+            # - name: Build the Docker image
+            #   run: |
+            #       docker build -t wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA . 
+            #       docker push wohligakash/pingpong:$GITHUB_REF_NAME-$GITHUB_SHA
 
-            - name: Helm template and git--push
-              run: |
+            # - name: Helm template and git--push
+            #   run: |
 
-                  git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
-                  cd Helm-GitOps-Test
+            #       git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/Fair-Play-Club/Helm-GitOps-Test.git
+            #       cd Helm-GitOps-Test
 
-                  yq e '.fairplay-api.image = "faiplay-api:${{ env.GITHUB_BRANCH }}"' -i Helm-GitOps/fairplay-api-deployments-values.yaml
-                  helm template helm-g ./Helm-GitOps --values ./Helm-GitOps/fairplay-api-deployments-values.yaml > manifest-file/manifests.yaml
+            #       yq e '.fairplay-api.image = "faiplay-api:${{ env.GITHUB_BRANCH }}"' -i Helm-GitOps/fairplay-api-deployments-values.yaml
+            #       helm template helm-g ./Helm-GitOps --values ./Helm-GitOps/fairplay-api-deployments-values.yaml > manifest-file/manifests.yaml
 
-                  git config user.name "$GITHUB_ACTOR"
-                  git config user.email ${{ secrets.USER_EMAIL_GITHUB }}
+            #       git config user.name "$GITHUB_ACTOR"
+            #       git config user.email ${{ secrets.USER_EMAIL_GITHUB }}
 
-                  git add .
-                  git commit -m "Updating newer image"
-                  git push origin master
+            #       git add .
+            #       git commit -m "Updating newer image"
+            #       git push origin master
 
             - name: Postman CI
               run: |
@@ -57,6 +57,8 @@ jobs:
                   git clone https://${{ secrets.USERNAME_GITHUB }}:${{ secrets.AUTH_TOKEN }}@github.com/PlayExchange/postman-automation.git
 
                   cd postman-automation
+
+                  ls
 
             - name: Install Newman
               run: |
