@@ -1,4 +1,4 @@
-name: Build-Commit-Push-Jira-Transition
+name: Build-Commit-Push
 
 on:
     push:
