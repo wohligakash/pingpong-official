@@ -80,7 +80,7 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                 name: Postman-Reports
-                path: ./Cricket_Bet_Flow_Matched-report.html
+                path: ./
 
     # Jira-ticket-transition:
     #     runs-on: ubuntu-latest
