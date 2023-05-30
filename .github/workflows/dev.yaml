@@ -50,6 +50,7 @@ jobs:
             #       git add .
             #       git commit -m "Updating newer image"
             #       git push origin master
+            - uses: actions/checkout@v3
 
             - name: Postman CI
               run: |
@@ -75,7 +76,6 @@ jobs:
       
                 # newman run "Collections/Tennis_Bet_Flow_Unmatched.postman_collection.json" -e "Env/PlayEnv.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export ./Tennis_Bet_Flow_Unmatched-report.html || true
 
-            - uses: actions/checkout@v3
             
             - name: Publish Report
               uses: actions/upload-artifact@v3
